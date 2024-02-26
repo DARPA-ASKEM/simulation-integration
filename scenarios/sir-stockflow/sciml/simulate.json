@@ -1,4 +1,8 @@
 {
-  "model_config_id": "sir-stockflow",
+  "plan": {
+    "config_id": "sir-stockflow",
+    "context_id": null,
+    "model_id": null
+  },
   "timespan": {"start": 0, "end": 30}
 }

@@ -5,25 +5,31 @@ info:
   version: 0.1.0
 components:
   schemas:
-    ModelConfigurations:
+    SimulationPlanMappings:
       type: array
       description: "List of model configurations to use. The sum of the weights should be 1."
       items:
-        $ref: '#/components/schemas/ModelConfiguration'
+        $ref: '#/components/schemas/SimulationPlanMapping'
       example:
-        - id: "ba8da8d4-047d-11ee-be56"
+        - config_id: "ba8da8d4-047d-11ee-be56"
+          context_id: null
+          model_id: null
           solution_mappings: 
             S: "Susceptible"
             I: "SymptomaticAndAsymptomatic"
             R: "Healthy"
           weight: 0.4
-        - id: "c1cd941a-047d-11ee-be56"
+        - config_id: null
+          context_id: null
+          model_id: "ba8da8d4-047d-11ee-be56"
           solution_mappings: 
             S: "S"
             I: "IandDandAandRandT"
             R: "HandE"
           weight: 0.1
-        - id: "c4b9f88a-047d-11ee-be56"
+        - config_id: null
+          context_id: null
+          model_id: "ba8da8d4-047d-11ee-be56"
           solution_mappings:
             S: "scaleS"
             I: "scaleI"
@@ -54,11 +60,15 @@ components:
       description: "A list of all interventions where each variable at each timestep is separated"
       items:
         $ref: '#/components/schemas/Intervention'
-    ModelConfiguration:
+    SimulationPlanMapping:
       type: object
       properties:
-        model_config_id:
-          type: string
+        config_id:
+          type: ["string", "null"]
+        context_id:
+          type: ["string", "null"]
+        model_id:
+          type: ["string", "null"]
         solution_mappings: 
           type: object
           description: "
@@ -69,9 +79,22 @@ components:
         weight:
           type: number
           description: "How much the model should affect the final result. Must be between 0 and 1."
+    SimulationPlan:
+      type: object
+      description: "IDs for the constituents of a simulation plan"
+      properties:
+        config_id:
+          type: ["string", "null"]
+          example: null
+        context_id:
+          type: ["string", "null"]
+          example: null
+        model_id:
+          type: ["string", "null"]
+          example: "ba8da8d4-047d-11ee-be56"
     Intervention:
       type: object
-      description: "A change in a variables value at a specific timestep."
+      description: "A change in a variable's value at a specific timestep."
       properties:
           timestep:
             type: number
@@ -111,11 +134,10 @@ paths:
               properties:
                 engine:
                   $ref: '#/components/schemas/Engine'
-                model_config_id:
-                  type: string
-                  example: "ba8da8d4-047d-11ee-be56"
+                plan:
+                  $ref: '#/components/schemas/SimulationPlan'
                 timespan:
-                    $ref: '#/components/schemas/Timespan'
+                  $ref: '#/components/schemas/Timespan'
                 interventions:
                    $ref: '#/components/schemas/Interventions'                  
                 extra:
@@ -123,7 +145,7 @@ paths:
                   type: object
               required:
                 - engine
-                - model_config_id
+                - plan_ids
                 - timespan
       responses:
         '200':
@@ -151,19 +173,18 @@ paths:
               properties:
                 engine:
                   $ref: '#/components/schemas/Engine'
-                model_config_id:
-                  type: string
-                  example: "c1cd941a-047d-11ee-be56"
+                plan:
+                  $ref: '#/components/schemas/SimulationPlan'
                 dataset:
                   $ref: '#/components/schemas/Dataset'
                 timespan:
-                    $ref: '#/components/schemas/Timespan'
+                  $ref: '#/components/schemas/Timespan'
                 extra:
                   description: optional extra system specific arguments for advanced use cases
                   type: object
               required:
                 - engine
-                - model_config_id
+                - plan
                 - dataset
       responses:
         '200':
@@ -255,8 +276,8 @@ paths:
               properties:
                 engine:
                   $ref: '#/components/schemas/Engine'
-                model_configs:
-                  $ref: '#/components/schemas/ModelConfigurations'
+                plan_mappings:
+                  $ref: '#/components/schemas/SimulationPlanMappings'
                 timespan:
                     $ref: '#/components/schemas/Timespan'
 
@@ -265,7 +286,7 @@ paths:
                   type: object                   
               required:
                 - engine
-                - model_config_id
+                - plan_mappings
                 - timespan
       responses:
         '200':
@@ -292,8 +313,8 @@ paths:
               properties:
                 engine:
                   $ref: '#/components/schemas/Engine'
-                model_configs:
-                  $ref: '#/components/schemas/ModelConfigurations'
+                plan_mappings:
+                  $ref: '#/components/schemas/SimulationPlanMappings'
                 dataset:
                   $ref: '#/components/schemas/Dataset'
                 timespan:
@@ -303,7 +324,7 @@ paths:
                   type: object
               required:
                 - engine
-                - model_config_ids
+                - plan_mappings
                 - timespan
       responses:
         '200':

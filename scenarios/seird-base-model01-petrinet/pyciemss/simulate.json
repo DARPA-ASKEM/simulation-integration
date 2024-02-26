@@ -1,6 +1,11 @@
 {
   "engine": "ciemss",
-  "model_config_id": "SEIRD-base-model01-petrinet",
+  "username": "not_provided",
+  "plan": {
+    "config_id": "SEIRD-base-model01-petrinet",
+    "context_id": null,
+    "model_id": null
+  },
   "timespan": {
     "start": 0,
     "end": 30

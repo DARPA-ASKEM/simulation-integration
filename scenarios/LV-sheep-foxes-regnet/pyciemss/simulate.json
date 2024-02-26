@@ -1,6 +1,11 @@
 {
   "engine": "ciemss",
-  "model_config_id": "LV-sheep-foxes-regnet",
+  "username": "not_provided",
+  "plan": {
+    "config_id": "LV-sheep-foxes-regnet",
+    "context_id": null,
+    "model_id": null
+  },
   "timespan": {
     "start": 0,
     "end": 30

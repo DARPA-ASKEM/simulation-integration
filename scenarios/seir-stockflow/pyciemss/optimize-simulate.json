@@ -1,0 +1,27 @@
+{
+  "engine": "ciemss",
+  "username": "not_provided",
+  "plan": {
+    "config_id": "seir-stockflow",
+    "context_id": null,
+    "model_id": null
+  },
+  "timespan": {
+    "start": 0,
+    "end": 19
+  },
+  "interventions": [
+    {
+      "timestep": 20,
+      "name": "p_cbeta"
+    }
+  ],
+  "qoi":  {"function": "scenario2dec_nday_average", "state": "Infected_sol", "arg":2},
+  "risk_bound": 10.0,
+  "initial_guess": 0.3,
+  "bounds": [[0.1], [0.5]],
+  "extra": {
+    "num_samples": 5,
+    "n_samples_ouu": 5
+  }
+}

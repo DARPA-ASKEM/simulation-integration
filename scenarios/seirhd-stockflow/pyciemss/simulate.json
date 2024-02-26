@@ -1,6 +1,11 @@
 {
   "engine": "ciemss",
-  "model_config_id": "sierhd-stockflow",
+  "username": "not_provided",
+  "plan": {
+    "config_id": "sierhd-stockflow",
+    "context_id": null,
+    "model_id": null
+  },
   "timespan": {
     "start": 0,
     "end": 30

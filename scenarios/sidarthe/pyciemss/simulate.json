@@ -1,6 +1,11 @@
 {
   "engine": "ciemss",
-  "model_config_id": "sidarthe",
+  "username": "not_provided",
+  "plan":{
+    "config_id": "sidarthe",
+    "context_id": null,
+    "model_id": null
+  },
   "timespan": {
     "start": 0,
     "end": 90

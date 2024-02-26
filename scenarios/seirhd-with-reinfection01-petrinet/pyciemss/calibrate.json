@@ -1,6 +1,11 @@
 {
   "engine": "ciemss",
-  "model_config_id": "seirhd-with-reinfection01-petrinet",
+  "username": "not_provided",
+  "plan": {
+    "config_id": "seirhd-with-reinfection01-petrinet",
+    "context_id": null,
+    "model_id": null
+  },
   "dataset": {
     "id": "traditional",
     "filename": "traditional.csv",

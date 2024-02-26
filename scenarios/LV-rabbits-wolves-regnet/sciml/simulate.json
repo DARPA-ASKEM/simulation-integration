@@ -1,4 +1,8 @@
 {
-  "model_config_id": "LV-rabbits-wolves-regnet",
+  "plan": {
+    "config_id": "LV-rabbits-wolves-regnet",
+    "context_id": null,
+    "model_id": null
+  },
   "timespan": {"start": 0, "end": 30}
 }

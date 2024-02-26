@@ -1,13 +1,17 @@
 {
   "engine": "ciemss",
-  "model_configs": [
+  "plan_mappings": [
     {
-      "id": "sirhd",
+      "config_id": "sirhd",
+      "context_id": null,
+      "model_id": null,
       "weight": 0.5,
       "solution_mappings": {"Infected": "Infections", "Hospitalizations": "hospitalized_population"}
     },
     {
-      "id": "seiarhds",
+      "config_id": "seiarhds",
+      "context_id": null,
+      "model_id": null,
       "weight": 0.5,
       "solution_mappings": {"Infected": "Cases", "Hospitalizations": "hospitalized_population"}
     }
